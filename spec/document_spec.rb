@@ -3,9 +3,9 @@ require 'spec_helper'
 describe CXML::Document do
   let(:parser) { CXML::Parser.new }
 
-  it { should respond_to :version }
-  it { should respond_to :payload_id }
-  it { should respond_to :timestamp }
+  it { is_expected.to respond_to :version }
+  it { is_expected.to respond_to :payload_id }
+  it { is_expected.to respond_to :timestamp }
 
   describe '#parse' do
     it 'sets document attributes' do

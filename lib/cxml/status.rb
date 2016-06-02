@@ -29,7 +29,7 @@ module CXML
     end
 
     def render(node)
-      node.Status(:code => @code, :text => @text)
+      node.Status(code: code, text: text)
     end
   end
 end

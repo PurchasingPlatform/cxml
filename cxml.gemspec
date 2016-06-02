@@ -8,14 +8,14 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/sosedoff/cxml"
   s.authors     = ["Dan Sosedoff"]
   s.email       = ["dan.sosedoff@gmail.com"]
-  
+
   s.add_development_dependency 'rake'
-  s.add_development_dependency 'rspec',     '~> 2.13'
+  s.add_development_dependency 'rspec',     '~> 3.4'
   s.add_development_dependency 'simplecov', '~> 0.7'
 
-  s.add_dependency 'nokogiri'
-  s.add_dependency 'xml-simple'
-  s.add_dependency 'hashr'
+  s.add_dependency 'nokogiri', '~> 1.6'
+  s.add_dependency 'xml-simple', '~> 1.1.5'
+  s.add_dependency 'hashr', '~> 2.0'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

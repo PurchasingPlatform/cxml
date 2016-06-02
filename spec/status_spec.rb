@@ -1,12 +1,10 @@
-require 'spec_helper'
-
 describe CXML::Status do
   describe 'instance' do
-    it { should respond_to :code }
-    it { should respond_to :text }
-    it { should respond_to :xml_lang }
-    it { should respond_to :success? }
-    it { should respond_to :failure? }
+    it { is_expected.to respond_to :code }
+    it { is_expected.to respond_to :text }
+    it { is_expected.to respond_to :xml_lang }
+    it { is_expected.to respond_to :success? }
+    it { is_expected.to respond_to :failure? }
   end
 
   describe '#initialize' do
@@ -14,38 +12,38 @@ describe CXML::Status do
       str = '<Status xml:lang="en-US" code="200" text="OK"></Status>'
       status = CXML::Status.new(str)
 
-      status.code.should eq(200)
-      status.xml_lang.should eq('en-US')
-      status.text.should eq('OK')
+      expect(status.code).to eq(200)
+      expect(status.xml_lang).to eq('en-US')
+      expect(status.text).to eq('OK')
     end
 
     it 'assigns attributes from hash' do
       hash = {'xml:lang' => 'en-US', 'code' => "200", 'text' => 'OK'}
       status = CXML::Status.new(hash)
 
-      status.code.should eq(200)
-      status.xml_lang.should eq('en-US')
-      status.text.should eq('OK')
+      expect(status.code).to eq(200)
+      expect(status.xml_lang).to eq('en-US')
+      expect(status.text).to eq('OK')
     end
   end
 
   describe '#success?' do
     it 'returns true on 2xx codes' do
-      CXML::Status.new('code' => '200').success?.should be_true
-      CXML::Status.new('code' => '201').success?.should be_true
-      CXML::Status.new('code' => '281').success?.should be_true
+      expect(CXML::Status.new('code' => '200').success?).to be_truthy
+      expect(CXML::Status.new('code' => '201').success?).to be_truthy
+      expect(CXML::Status.new('code' => '281').success?).to be_truthy
     end
 
     it 'returns false on non 2xx codes' do
-      CXML::Status.new('code' => '400').success?.should be_false
-      CXML::Status.new('code' => '475').success?.should be_false
-      CXML::Status.new('code' => '500').success?.should be_false
+      expect(CXML::Status.new('code' => '400').success?).to be_falsey
+      expect(CXML::Status.new('code' => '475').success?).to be_falsey
+      expect(CXML::Status.new('code' => '500').success?).to be_falsey
     end
   end
 
   describe '#failure?' do
     it 'returns false on 2xx codes' do
-      CXML::Status.new('code' => '200').failure?.should be_false
+      expect(CXML::Status.new('code' => '200').failure?).to be_falsey
     end
   end
 end
