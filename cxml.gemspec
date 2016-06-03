@@ -10,8 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ["dan.sosedoff@gmail.com"]
 
   s.add_development_dependency "rake"
-  s.add_development_dependency "rspec",     "~> 3.4"
-  s.add_development_dependency "simplecov", "~> 0.7"
+  s.add_development_dependency "rspec", "~> 3.4"
 
   s.add_dependency "nokogiri", "~> 1.6"
   s.add_dependency "xml-simple", "~> 1.1.5"
