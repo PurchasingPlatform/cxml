@@ -11,7 +11,7 @@ module CXML
 
     def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
-        @status = CXML::Status.new(data['Status'])
+        @status = CXML::Status.new(data["Status"])
       end
     end
 

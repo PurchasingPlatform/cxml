@@ -10,9 +10,9 @@ module CXML
       data = CXML.parse(data) if data.kind_of?(String)
 
       if data.kind_of?(Hash) && !data.empty?
-        @code     = data['code'].to_i
-        @text     = data['text']
-        @xml_lang = data['xml:lang']
+        @code     = data["code"].to_i
+        @text     = data["text"]
+        @xml_lang = data["xml:lang"]
       end
     end
 

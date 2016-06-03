@@ -10,8 +10,8 @@ module CXML
 
     def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
-        @id = data['id']
-        @deployment_mode = data['deploymentMode']
+        @id = data["id"]
+        @deployment_mode = data["deploymentMode"]
       end
     end
 

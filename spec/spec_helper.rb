@@ -1,6 +1,6 @@
 $:.unshift File.expand_path("../..", __FILE__)
 
-require 'cxml'
+require "cxml"
 
 RSpec.configure do |conf|
 end

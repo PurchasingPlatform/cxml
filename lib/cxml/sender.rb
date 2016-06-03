@@ -5,8 +5,8 @@ module CXML
 
     def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
-        @credential = CXML::Credential.new(data['Credential'])
-        @user_agent = data['UserAgent']
+        @credential = CXML::Credential.new(data["Credential"])
+        @user_agent = data["UserAgent"]
       end
     end
 

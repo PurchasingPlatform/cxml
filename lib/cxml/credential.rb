@@ -44,15 +44,15 @@ module CXML
     # @param data [Hash] optional initial data
     def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
-        @domain        = data['domain']
-        @type          = data['type']
-        @identity      = data['Identity']
-        @shared_secret = data['SharedSecret']
+        @domain        = data["domain"]
+        @type          = data["type"]
+        @identity      = data["Identity"]
+        @shared_secret = data["SharedSecret"]
       end
     end
 
     def render(node)
-      node.Credential('domain' => domain) do |c|
+      node.Credential("domain" => domain) do |c|
         c.Identity(@identity)
         c.SharedSecret(@shared_secret) if @shared_secret
       end

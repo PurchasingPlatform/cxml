@@ -1,23 +1,23 @@
 module CXML
   module Protocol
-    VERSION = '1.2.011'
+    VERSION = "1.2.011"
 
     REQUEST_ELEMENTS = [
-      'OrderRequest',
-      'ProfileRequest',
-      'PunchOutSetupRequest',
-      'StatusUpdateRequest',
-      'GetPendingRequest',
-      'ConfirmationRequest',
-      'ShipNoticeRequest',
-      'ProviderSetupRequest',
-      'PaymentRemittanceRequest',
+      "OrderRequest",
+      "ProfileRequest",
+      "PunchOutSetupRequest",
+      "StatusUpdateRequest",
+      "GetPendingRequest",
+      "ConfirmationRequest",
+      "ShipNoticeRequest",
+      "ProviderSetupRequest",
+      "PaymentRemittanceRequest",
     ]
 
     RESPONSE_ELEMENTS = [
-      'ProfileResponse',
-      'PunchOutSetupResponse',
-      'GetPendingResponse',
+      "ProfileResponse",
+      "PunchOutSetupResponse",
+      "GetPendingResponse",
     ]
 
     STATUS_CODES = [
