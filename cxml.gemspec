@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "nokogiri", "~> 1.6"
   s.add_dependency "xml-simple", "~> 1.1.5"
-  s.add_dependency "hashr", "~> 2.0"
 
   s.files = Dir['lib/*.rb'] + Dir['lib/cxml/*.rb'] + Dir['bin/*']
   s.files += Dir['[A-Z]*'] + Dir['spec/**/*']
