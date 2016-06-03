@@ -18,23 +18,19 @@
 
 module CXML
   class Header
-    attr_accessor :from
-    attr_accessor :to
-    attr_accessor :sender
+    attr_accessor :from, :to, :sender
 
     def initialize(data={})
-      if data.kind_of?(Hash) && !data.empty?
-        @from       = CXML::Credential.new(data["From"]["Credential"])
-        @to         = CXML::Credential.new(data["To"]["Credential"])
-        @sender     = CXML::Sender.new(data["Sender"])
-      end
+      @from   = CXML::Credential.new(data["From"]["Credential"])
+      @to     = CXML::Credential.new(data["To"]["Credential"])
+      @sender = CXML::Sender.new(data["Sender"])
     end
 
     def render(node)
-      node.From   { |n| @from.render(n) }
-      node.To     { |n| @to.render(n) }
+      node.From   { |n| from.render(n) }
+      node.To     { |n| to.render(n) }
 
-      @sender.render(node)
+      sender.render(node)
       node
     end
   end

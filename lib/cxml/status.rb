@@ -1,8 +1,6 @@
 module CXML
   class Status
-    attr_accessor :code
-    attr_accessor :text
-    attr_accessor :xml_lang
+    attr_reader :code, :text, :xml_lang
 
     # Initialize a new Status instance
     # @params data [Hash] optional hash with attributes

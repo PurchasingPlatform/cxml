@@ -7,17 +7,16 @@
 module CXML
   class Response
     attr_accessor :id
-    attr_accessor :status
+    attr_reader :status
 
     def initialize(data={})
-      if data.kind_of?(Hash) && !data.empty?
-        @status = CXML::Status.new(data["Status"])
-      end
+      @status = CXML::Status.new(data["Status"])
     end
 
     def render(node)
-      options = {id: @id}
-      options.keep_if { |k,v| !v.nil? }
+      options = {}
+      options.merge!(id: id) if id
+
       node.Response(options) { |n| status.render(n) }
     end
   end
