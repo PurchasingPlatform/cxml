@@ -16,9 +16,9 @@ Gem::Specification.new do |s|
   s.add_dependency "xml-simple", "~> 1.1.5"
   s.add_dependency "hashr", "~> 2.0"
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{|f| File.basename(f)}
+  s.files = Dir['lib/*.rb'] + Dir['lib/cxml/*.rb'] + Dir['bin/*']
+  s.files += Dir['[A-Z]*'] + Dir['spec/**/*']
+
   s.require_paths = ["lib"]
   s.required_ruby_version = ">= 2.3.1"
 end
