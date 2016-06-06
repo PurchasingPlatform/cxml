@@ -29,21 +29,21 @@ describe CXML::Status do
 
   describe "#success?" do
     it "returns true on 2xx codes" do
-      expect(CXML::Status.new("code" => "200").success?).to be_truthy
-      expect(CXML::Status.new("code" => "201").success?).to be_truthy
-      expect(CXML::Status.new("code" => "281").success?).to be_truthy
+      expect(CXML::Status.new("code" => "200").success?).to be true
+      expect(CXML::Status.new("code" => "201").success?).to be true
+      expect(CXML::Status.new("code" => "281").success?).to be true
     end
 
     it "returns false on non 2xx codes" do
-      expect(CXML::Status.new("code" => "400").success?).to be_falsey
-      expect(CXML::Status.new("code" => "475").success?).to be_falsey
-      expect(CXML::Status.new("code" => "500").success?).to be_falsey
+      expect(CXML::Status.new("code" => "400").success?).to be false
+      expect(CXML::Status.new("code" => "475").success?).to be false
+      expect(CXML::Status.new("code" => "500").success?).to be false
     end
   end
 
   describe "#failure?" do
     it "returns false on 2xx codes" do
-      expect(CXML::Status.new("code" => "200").failure?).to be_falsey
+      expect(CXML::Status.new("code" => "200").failure?).to be false
     end
   end
 end
