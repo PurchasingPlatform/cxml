@@ -7,7 +7,8 @@ module CXML
   class Request
     attr_reader :id, :deployment_mode
 
-    def initialize(data={})
+    def initialize(data=nil)
+      data ||= {}
       @id              = data["id"]
       @deployment_mode = data["deploymentMode"]
     end

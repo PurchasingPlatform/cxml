@@ -2,7 +2,8 @@ module CXML
   class Sender
     attr_reader :credential, :user_agent
 
-    def initialize(data={})
+    def initialize(data=nil)
+      data ||= {}
       @credential = CXML::Credential.new(data["Credential"])
       @user_agent = data["UserAgent"]
     end

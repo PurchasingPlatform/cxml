@@ -3,7 +3,8 @@ module CXML
     attr_accessor :version, :payload_id, :timestamp
     attr_accessor :header, :request, :response
 
-    def initialize(data={})
+    def initialize(data=nil)
+      data ||= {}
       @version = data["version"]
       @payload_id = data["payloadID"]
 

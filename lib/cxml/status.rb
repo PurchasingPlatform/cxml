@@ -4,7 +4,8 @@ module CXML
 
     # Initialize a new Status instance
     # @params data [Hash] optional hash with attributes
-    def initialize(data={})
+    def initialize(data=nil)
+      data ||= {}
       data = CXML.parse(data) if data.kind_of?(String)
 
       if data.kind_of?(Hash) && !data.empty?

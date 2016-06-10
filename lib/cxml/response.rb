@@ -8,7 +8,8 @@ module CXML
   class Response
     attr_accessor :id, :status
 
-    def initialize(data={})
+    def initialize(data=nil)
+      data ||= {}
       @status = CXML::Status.new(data["Status"])
     end
 

@@ -20,7 +20,8 @@ module CXML
   class Header
     attr_accessor :from, :to, :sender
 
-    def initialize(data={})
+    def initialize(data=nil)
+      data ||= {}
       @from   = CXML::Credential.new(data["From"]["Credential"])
       @to     = CXML::Credential.new(data["To"]["Credential"])
       @sender = CXML::Sender.new(data["Sender"])
