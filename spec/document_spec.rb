@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe CXML::Document do
   let(:parser) { CXML::Parser.new }
 

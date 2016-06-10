@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe CXML::Protocol do
   it { is_expected.to respond_to :version }
   it { is_expected.to respond_to :request_elements }
