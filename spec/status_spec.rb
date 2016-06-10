@@ -9,7 +9,7 @@ describe CXML::Status do
 
   describe "#initialize" do
     it "assigns attributes from string" do
-      str = "<Status xml:lang='en-US' code='200' text='OK'></Status>"
+      str = '<Status xml:lang="en-US" code="200" text="OK"></Status>'
       status = CXML::Status.new(str)
 
       expect(status.code).to eq(200)

@@ -15,7 +15,7 @@ module CXML
 
     def render(node)
       options = {}
-      options.merge!(id: id) if id
+      options[:id] = id if id
 
       node.Response(options) { |n| status.render(n) }
     end

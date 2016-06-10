@@ -6,13 +6,14 @@ module CXML
     # @params data [Hash] optional hash with attributes
     def initialize(data=nil)
       data ||= {}
-      data = CXML.parse(data) if data.kind_of?(String)
 
-      if data.kind_of?(Hash) && !data.empty?
-        @code     = data["code"].to_i
-        @text     = data["text"]
-        @xml_lang = data["xml:lang"]
+      if data.kind_of?(String)
+        data = CXML.parse(data)
       end
+
+      @code     = data["code"].to_i
+      @text     = data["text"]
+      @xml_lang = data["xml:lang"]
     end
 
     # Check if status is success
