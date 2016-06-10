@@ -16,8 +16,8 @@ Gem::Specification.new do |s|
   s.add_dependency "nokogiri", "~> 1.6"
   s.add_dependency "xml-simple", "~> 1.1.5"
 
-  s.files = Dir['lib/*.rb'] + Dir['lib/cxml/*.rb'] + Dir['bin/*']
-  s.files += Dir['[A-Z]*'] + Dir['spec/**/*']
+  s.files = Dir["lib/*.rb"] + Dir["lib/cxml/*.rb"] + Dir["bin/*"]
+  s.files += Dir["[A-Z]*"] + Dir["spec/**/*"]
 
   s.require_paths = ["lib"]
   s.required_ruby_version = ">= 2.3.1"
