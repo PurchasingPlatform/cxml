@@ -6,8 +6,7 @@
 
 module CXML
   class Response
-    attr_accessor :id
-    attr_reader :status
+    attr_accessor :id, :status
 
     def initialize(data={})
       @status = CXML::Status.new(data["Status"])

@@ -1,7 +1,7 @@
 module CXML
   class Document
-    attr_reader :version, :payload_id, :timestamp
-    attr_reader :header, :request, :response
+    attr_accessor :version, :payload_id, :timestamp
+    attr_accessor :header, :request, :response
 
     def initialize(data={})
       @version = data["version"]
