@@ -1,6 +1,6 @@
 # The Header element contains addressing and authentication information. The Header
 # element is the same regardless of the specific Request or Response within the body of 
-# the cXML message. Applications need the requestor's identity, but not validation that 
+# the cXML message. Applications need the requestor"s identity, but not validation that 
 # the information provided for identity is correct.
 # 
 # The From and To elements are synonymous with From and To in SMTP mail 
@@ -18,23 +18,20 @@
 
 module CXML
   class Header
-    attr_accessor :from
-    attr_accessor :to
-    attr_accessor :sender
+    attr_accessor :from, :to, :sender
 
-    def initialize(data={})
-      if data.kind_of?(Hash) && !data.empty?
-        @from       = CXML::Credential.new(data['From']['Credential'])
-        @to         = CXML::Credential.new(data['To']['Credential'])
-        @sender     = CXML::Sender.new(data['Sender'])
-      end
+    def initialize(data=nil)
+      data ||= {}
+      @from   = CXML::Credential.new(data["From"]["Credential"])
+      @to     = CXML::Credential.new(data["To"]["Credential"])
+      @sender = CXML::Sender.new(data["Sender"])
     end
 
     def render(node)
-      node.From   { |n| @from.render(n) }
-      node.To     { |n| @to.render(n) }
+      node.From   { |n| from.render(n) }
+      node.To     { |n| to.render(n) }
 
-      @sender.render(node)
+      sender.render(node)
       node
     end
   end

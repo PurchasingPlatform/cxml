@@ -1,19 +1,17 @@
 module CXML
   class Sender
-    attr_accessor :credential
-    attr_accessor :user_agent
+    attr_reader :credential, :user_agent
 
-    def initialize(data={})
-      if data.kind_of?(Hash) && !data.empty?
-        @credential = CXML::Credential.new(data['Credential'])
-        @user_agent = data['UserAgent']
-      end
+    def initialize(data=nil)
+      data ||= {}
+      @credential = CXML::Credential.new(data["Credential"])
+      @user_agent = data["UserAgent"]
     end
 
     def render(node)
       node.Sender do |n|
-        n.UserAgent(@user_agent)
-        @credential.render(n)
+        n.UserAgent(user_agent)
+        credential.render(n)
       end
       node
     end

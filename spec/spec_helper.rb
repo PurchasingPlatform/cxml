@@ -1,9 +1,4 @@
-$:.unshift File.expand_path("../..", __FILE__)
-
-require 'cxml'
-
-RSpec.configure do |conf|
-end
+require "cxml"
 
 def fixture_path(filename=nil)
   path = File.expand_path("../fixtures", __FILE__)
