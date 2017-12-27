@@ -3,17 +3,14 @@ module CXML
     attr_accessor :code, :text, :xml_lang
 
     # Initialize a new Status instance
-    # @params data [Hash] optional hash with attributes
-    def initialize(data=nil)
+    # @param data [Hash] optional hash with attributes
+    def initialize(data = nil)
       data ||= {}
+      data = CXML.parse(data) if data.is_a?(String)
 
-      if data.kind_of?(String)
-        data = CXML.parse(data)
-      end
-
-      @code     = data["code"].to_i
-      @text     = data["text"]
-      @xml_lang = data["xml:lang"]
+      @code = data['code'].to_i
+      @text = data['text']
+      @xml_lang = data['xml:lang']
     end
 
     # Check if status is success
@@ -29,7 +26,10 @@ module CXML
     end
 
     def render(node)
-      node.Status(code: code, text: text)
+      # node.Status(code: code, text: text)
+      node << Ox::Element.new('Status')
+      node.Status['code'] = code.to_s
+      node.Status['text'] = text.to_s
     end
   end
 end

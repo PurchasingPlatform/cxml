@@ -1,10 +1,8 @@
-require "nokogiri"
-require "xmlsimple"
-
 module CXML
   class Parser
     def parse(data)
-      XmlSimple.xml_in(data, {"ForceArray" => false})
+      # XmlSimple.xml_in(data, {"ForceArray" => false})
+      Ox.load(data, mode: :hash)
     end
   end
 end
