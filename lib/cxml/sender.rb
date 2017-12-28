@@ -7,17 +7,12 @@ module CXML
       @user_agent = data['UserAgent']
     end
 
-    def render(node)
-      # node.Sender do |n|
-      #   n.UserAgent(user_agent)
-      #   credential.render(n)
-      # end
-      # node
-
-      node << Ox::Element.new('Sender')
-      node.Sender << Ox::Element.new('UserAgent')
-      node.Sender.UserAgent << user_agent.to_s
-      node.Sender << credential.render(node.Sender)
+    def render
+      node = Ox::Element.new('Sender')
+      node << Ox::Element.new('UserAgent')
+      node.UserAgent << user_agent.to_s
+      node << credential.render
+      node
     end
   end
 end

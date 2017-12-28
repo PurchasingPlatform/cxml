@@ -27,17 +27,11 @@ module CXML
       @sender = CXML::Sender.new(data['Sender'])
     end
 
-    def render(node)
-      # node.From   { |n| from.render(n) }
-      # node.To     { |n| to.render(n) }
-      #
-      # sender.render(node)
-      # node
-
-      node << Ox::Element.new('From')
-      node.From = from.render(node.From)
-      node.To = to.render(node.To)
-      sender.render(node)
+    def render
+      node = Ox::Element.new('Header')
+      node << from.render
+      node << to.render
+      node << sender.render
       node
     end
   end

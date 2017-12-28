@@ -10,7 +10,5 @@ module CXML
       @id = data['id']
       @deployment_mode = data['deploymentMode']
     end
-
-    def render(node); end
   end
 end

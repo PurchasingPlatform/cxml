@@ -1,8 +1,7 @@
 module CXML
   class Parser
     def parse(data)
-      # XmlSimple.xml_in(data, {"ForceArray" => false})
-      Ox.load(data, mode: :hash)
+      Ox.load(data, mode: :hash, symbolize_keys: false)
     end
   end
 end

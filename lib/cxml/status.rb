@@ -6,7 +6,7 @@ module CXML
     # @param data [Hash] optional hash with attributes
     def initialize(data = nil)
       data ||= {}
-      data = CXML.parse(data) if data.is_a?(String)
+      data = CXML.parse(data)['Status'][0] if data.is_a?(String)
 
       @code = data['code'].to_i
       @text = data['text']
@@ -25,11 +25,11 @@ module CXML
       !success?
     end
 
-    def render(node)
-      # node.Status(code: code, text: text)
-      node << Ox::Element.new('Status')
-      node.Status['code'] = code.to_s
-      node.Status['text'] = text.to_s
+    def render
+      node = Ox::Element.new('Status')
+      node['code'] = code.to_s
+      node['text'] = text.to_s
+      node
     end
   end
 end

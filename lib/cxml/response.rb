@@ -12,13 +12,11 @@ module CXML
       @status = CXML::Status.new(data['Status'])
     end
 
-    def render(node)
-      options = {}
-      options[:id] = id if id
-
-      # node.Response(options) { |n| status.render(n) }
-      node << Ox::Element.new('Response')
-      node.Response = status.render(node.Response)
+    def render
+      node = Ox::Element.new('Response')
+      node << status.render
+      node['id'] = id if id
+      node
     end
   end
 end

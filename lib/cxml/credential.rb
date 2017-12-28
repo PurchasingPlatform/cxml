@@ -48,19 +48,15 @@ module CXML
       @shared_secret = data['SharedSecret']
     end
 
-    def render(node)
-      # node.Credential('domain' => domain) do |c|
-      #   c.Identity(identity)
-      #   c.SharedSecret(shared_secret) if shared_secret
-      # end
-      node << Ox::Element.new('Credential')
-      node.Credential['domain'] = domain
-      node.Credential << Ox::Element.new('Identity')
-      node.Credential.Identity << identity.to_s
+    def render
+      node = Ox::Element.new('Credential')
+      node['domain'] = domain
+      node << Ox::Element.new('Identity')
+      node.Identity << identity.to_s
 
       if shared_secret
-        node.Credential.Identity << Ox::Element.new('SharedSecret')
-        node.Credential.Identity.SharedSecred << shared_secret.to_s
+        node.Identity << Ox::Element.new('SharedSecret')
+        node.Identity.SharedSecred << shared_secret.to_s
       end
 
       node

@@ -20,7 +20,6 @@ module CXML
   end
 
   def self.builder
-    # Nokogiri::XML::Builder.new(encoding: 'UTF-8')
-    Ox::Document.new(encoding: 'UTF-8')
+    Ox::Document.new(version: '1.0', encoding: 'UTF-8')
   end
 end
