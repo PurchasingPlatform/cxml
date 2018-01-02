@@ -8,13 +8,24 @@ module CXML
 
       return unless data['cXML']
 
-      data = data['cXML'][0]
-      @version = data['version']
-      @payload_id = data['payloadID']
-      @timestamp = Time.parse(data['timestamp']) if data['timestamp']
-      @header = CXML::Header.new(data['Header']) if data['Header']
-      @request = CXML::Request.new(data['Request']) if data['Request']
-      @response = CXML::Response.new(data['Response']) if data['Response']
+      @version = data.deep_locate('version').first['version']
+      @payload_id = data.deep_locate('payloadID').first['payloadID']
+
+      if t = data.deep_locate('timestamp').first
+        @timestamp = Time.parse(t['timestamp'])
+      end
+
+      if h = data.deep_locate('Header').first
+        @header = CXML::Header.new(h['Header'])
+      end
+
+      if r = data.deep_locate('Request').first
+        @request = CXML::Request.new(r)
+      end
+
+      if r = data.deep_locate('Response').first
+        @response = CXML::Response.new(r)
+      end
     end
 
     def setup

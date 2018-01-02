@@ -11,12 +11,13 @@ Gem::Specification.new do |s|
   s.summary               = 'Ruby library to work with cXML protocol'
   s.description           = 'Ruby library to work with cXML protocol'
   s.homepage              = 'http://github.com/sosedoff/cxml'
-  s.authors               = ['Dan Sosedoff']
-  s.email                 = ['dan.sosedoff@gmail.com']
+  s.authors               = ['Dan Sosedoff', 'Mike Mulev']
+  s.email                 = ['dan.sosedoff@gmail.com', 'm.mulev@gmail.com']
   s.files                 = Dir['lib/**/*'] + Dir['spec/**/*']
   s.required_ruby_version = '>= 2.3.1'
 
   s.add_development_dependency 'rspec', '~> 3.7'
 
+  s.add_dependency 'hashie', '~> 3.5.7'
   s.add_dependency 'ox', '~> 2.8.2'
 end

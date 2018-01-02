@@ -41,7 +41,8 @@ module CXML
     # Initialize a new Credential instance
     #
     # @param data [Hash] optional initial data
-    def initialize(data = {})
+    def initialize(data = nil)
+      data ||= {}
       @domain = data['domain']
       @type = data['type']
       @identity = data['Identity']
@@ -56,7 +57,7 @@ module CXML
 
       if shared_secret
         node.Identity << Ox::Element.new('SharedSecret')
-        node.Identity.SharedSecred << shared_secret.to_s
+        node.Identity.SharedSecret << shared_secret.to_s
       end
 
       node

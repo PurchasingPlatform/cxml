@@ -3,7 +3,7 @@ module CXML
     attr_reader :credential, :user_agent
 
     def initialize(data = {})
-      @credential = CXML::Credential.new(data['Credential'])
+      @credential = CXML::Credential.new(data['Credential'].reduce({}, :merge))
       @user_agent = data['UserAgent']
     end
 

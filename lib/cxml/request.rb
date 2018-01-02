@@ -7,8 +7,8 @@ module CXML
     attr_reader :id, :deployment_mode
 
     def initialize(data = {})
-      @id = data['id']
-      @deployment_mode = data['deploymentMode']
+      @id = data.deep_locate('id')
+      @deployment_mode = data.deep_locate('deploymentMode')
     end
   end
 end

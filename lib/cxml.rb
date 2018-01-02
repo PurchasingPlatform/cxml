@@ -1,7 +1,12 @@
 require 'cxml/version'
 require 'cxml/errors'
+require 'hashie'
 require 'time'
 require 'ox'
+
+class Hash
+  include Hashie::Extensions::DeepLocate
+end
 
 # Ruby library to work with the cXML protocol
 module CXML

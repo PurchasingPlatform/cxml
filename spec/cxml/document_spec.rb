@@ -26,7 +26,6 @@ RSpec.describe CXML::Document do
   describe '#render' do
     it 'returns and xml result' do
       doc = described_class.new(parser.parse(fixture('envelope3.xml')))
-      puts doc
       expect { doc.render }.not_to raise_error
     end
   end
