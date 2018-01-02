@@ -2,17 +2,16 @@ module CXML
   class Sender
     attr_reader :credential, :user_agent
 
-    def initialize(data=nil)
-      data ||= {}
-      @credential = CXML::Credential.new(data["Credential"])
-      @user_agent = data["UserAgent"]
+    def initialize(data = {})
+      @credential = CXML::Credential.new(data['Credential'].reduce({}, :merge))
+      @user_agent = data['UserAgent']
     end
 
-    def render(node)
-      node.Sender do |n|
-        n.UserAgent(user_agent)
-        credential.render(n)
-      end
+    def render
+      node = Ox::Element.new('Sender')
+      node << Ox::Element.new('UserAgent')
+      node.UserAgent << user_agent.to_s
+      node << credential.render
       node
     end
   end

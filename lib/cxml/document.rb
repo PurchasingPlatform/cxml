@@ -3,54 +3,58 @@ module CXML
     attr_accessor :version, :payload_id, :timestamp
     attr_accessor :header, :request, :response
 
-    def initialize(data=nil)
+    def initialize(data = nil)
       data ||= {}
-      @version = data["version"]
-      @payload_id = data["payloadID"]
 
-      if data["timestamp"]
-        @timestamp = Time.parse(data["timestamp"])
+      return unless data['cXML']
+
+      @version = data.deep_locate('version').first['version']
+      @payload_id = data.deep_locate('payloadID').first['payloadID']
+
+      if t = data.deep_locate('timestamp').first
+        @timestamp = Time.parse(t['timestamp'])
       end
 
-      if data["Header"]
-        @header = CXML::Header.new(data["Header"])
+      if h = data.deep_locate('Header').first
+        @header = CXML::Header.new(h['Header'])
       end
 
-      if data["Request"]
-        @request = CXML::Request.new(data["Request"])
+      if r = data.deep_locate('Request').first
+        @request = CXML::Request.new(r)
       end
 
-      if data["Response"]
-        @response = CXML::Response.new(data["Response"])
+      if r = data.deep_locate('Response').first
+        @response = CXML::Response.new(r)
       end
     end
 
     def setup
-      @version    = CXML::Protocol.version
-      @timestamp  = Time.now.utc
+      @version = CXML::Protocol.version
+      @timestamp = Time.now.utc
       @payload_id = "#{timestamp.to_i}.process.#{Process.pid}@domain.com"
     end
 
     # Check if document is request
     # @return [Boolean]
     def request?
-      !!request
+      !request.nil?
     end
 
     # Check if document is a response
     # @return [Boolean]
     def response?
-      !!response
+      !response.nil?
     end
 
     def render
-      node = CXML.builder
-      node.cXML("version" => version, "payloadID" => payload_id, "timestamp" => timestamp.iso8601) do |doc|
-        doc.Header { |n| header.render(n) } if header
-        request.render(node) if request
-        response.render(node) if response
-      end
-      node
+      doc = CXML.builder
+      doc << Ox::Element.new('cXML')
+      doc.cXML['version'] = version
+      doc.cXML['payloadID'] = payload_id
+      doc.cXML['timestamp'] = timestamp.iso8601
+      doc.cXML << header.render if header
+      doc.cXML << response.render if response
+      Ox.dump(doc, indent: 0, with_xml: true)
     end
   end
 end
