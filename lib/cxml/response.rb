@@ -20,9 +20,11 @@ module CXML
       node.Response(options) { |n| status.render(n) }
 
       if punchout_setup_url
-        node.PunchOutSetupResponse do |p|
-          p.StartPage do |s|
-            s.URL(punchout_setup_url)
+        node.Response do |r|
+          r.PunchOutSetupResponse do |p|
+            p.StartPage do |s|
+              s.URL(punchout_setup_url)
+            end
           end
         end
       end
