@@ -17,19 +17,17 @@ module CXML
       options = {}
       options[:id] = id if id
 
-      node.Response(options) { |n| status.render(n) }
+      node.Response(options) do |n|
+        status.render(n)
 
-      if punchout_setup_url
-        node.Response do |r|
-          r.PunchOutSetupResponse do |p|
+        if punchout_setup_url
+          n.PunchOutSetupResponse do |p|
             p.StartPage do |s|
               s.URL(punchout_setup_url)
             end
           end
         end
       end
-
-      node
     end
   end
 end
