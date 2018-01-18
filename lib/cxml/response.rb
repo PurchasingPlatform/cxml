@@ -6,7 +6,7 @@
 
 module CXML
   class Response
-    attr_accessor :id, :status
+    attr_accessor :id, :status, :punchout_setup_url
 
     def initialize(data=nil)
       data ||= {}
@@ -17,7 +17,17 @@ module CXML
       options = {}
       options[:id] = id if id
 
-      node.Response(options) { |n| status.render(n) }
+      node.Response(options) do |n|
+        status.render(n)
+
+        if punchout_setup_url
+          n.PunchOutSetupResponse do |p|
+            p.StartPage do |s|
+              s.URL(punchout_setup_url)
+            end
+          end
+        end
+      end
     end
   end
 end

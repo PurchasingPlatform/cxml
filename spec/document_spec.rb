@@ -29,4 +29,24 @@ describe CXML::Document do
       expect { doc.render }.not_to raise_error
     end
   end
+
+  describe 'Response' do
+    context 'when building a punchout setup response' do
+      let(:doc) do
+        doc = described_class.new
+        doc.setup
+        doc.response = CXML::Response.new
+        doc.response.punchout_setup_url = 'http://example.com'
+        doc
+      end
+
+      it 'sets the punchout setup URL correctly' do
+        expect(doc.response.punchout_setup_url).to eq 'http://example.com'
+      end
+
+      it 'renders an XML document without failures' do
+        expect { doc.render }.not_to raise_error
+      end
+    end
+  end
 end
