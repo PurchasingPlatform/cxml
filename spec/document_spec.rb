@@ -49,4 +49,38 @@ describe CXML::Document do
       end
     end
   end
+
+  describe 'OrderMessage' do
+    context 'when building a punchout order message' do
+      let(:doc) do
+        doc = described_class.new
+        doc.setup
+        doc.order_message = CXML::OrderMessage.new
+        doc.order_message.buyer_cookie = 'a'
+        doc.order_message.allowed_operation = 'e'
+        doc.order_message.total = CXML::Money.new
+        doc.order_message.total.currency = 'USD'
+        doc.order_message.total.amount = 700.01
+        item = CXML::Item.new
+        item.qty = 3
+        item.supplier_id = 100_500
+        item.supplier_auxiliary_id = 1_010_101_010
+        item.unit_price = 100
+        item.unit_price = CXML::Money.new
+        item.unit_price.currency = 'USD'
+        item.unit_price.amount = 100
+        item.description = 'test'
+        item.unit_of_measure = 'EA'
+        item.lang = 'en'
+        item.name = 'test'
+        doc.order_message.items = []
+        3.times { doc.order_message.items << item }
+        doc
+      end
+
+      it 'renders an XML document without failures' do
+        expect { doc.render }.not_to raise_error
+      end
+    end
+  end
 end

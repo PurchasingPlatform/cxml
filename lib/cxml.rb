@@ -12,6 +12,9 @@ module CXML
   autoload :Status,        "cxml/status"
   autoload :Request,       "cxml/request"
   autoload :Response,      "cxml/response"
+  autoload :OrderMessage,  "cxml/order_message"
+  autoload :Money,         "cxml/money"
+  autoload :Item,          "cxml/item"
   autoload :Parser,        "cxml/parser"
 
   def self.parse(str)
