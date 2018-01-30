@@ -1,7 +1,7 @@
 module CXML
   class Document
     attr_accessor :version, :payload_id, :timestamp
-    attr_accessor :header, :request, :response
+    attr_accessor :header, :request, :response, :order_message
 
     def initialize(data=nil)
       data ||= {}
@@ -49,6 +49,7 @@ module CXML
         doc.Header { |n| header.render(n) } if header
         request.render(node) if request
         response.render(node) if response
+        order_message.render(node) if order_message
       end
       node
     end
