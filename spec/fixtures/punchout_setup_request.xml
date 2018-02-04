@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cXML SYSTEM "http://xml.cxml.org/schemas/cXML/1.2.011/cXML.dtd">
+<cXML xml:lang="en-US" version="1.2.011" payloadID="sample_payload_id" timestamp="timestamp_mock">
+  <Header>
+    <From>
+      <Credential domain="CustomDomain">
+        <Identity>from</Identity>
+      </Credential>
+    </From>
+    <To>
+      <Credential domain="CustomDomain">
+        <Identity>to</Identity>
+      </Credential>
+    </To>
+    <Sender>
+      <UserAgent>purchasingplatform.com v0.3.0 CXML v1.2.011</UserAgent>
+      <Credential domain="CustomDomain">
+        <Identity>from</Identity>
+        <SharedSecret>shared_foo</SharedSecret>
+      </Credential>
+    </Sender>
+  </Header>
+  <Request>
+    <PunchOutSetupRequest operation="create"/>
+    <BuyerCookie>fookie</BuyerCookie>
+    <Extrinsic name="UserEmail">user@e.mail</Extrinsic>
+    <Extrinsic name="UniqueName">foouser</Extrinsic>
+    <BrowserFormPost>
+      <URL>https://buyer.host/endpoint</URL>
+    </BrowserFormPost>
+    <SupplierSetup>
+      <URL>https://vendor.host/endpoint</URL>
+    </SupplierSetup>
+  </Request>
+</cXML>

@@ -22,9 +22,17 @@ module CXML
 
     def initialize(data=nil)
       data ||= {}
-      @from   = CXML::Credential.new(data["From"]["Credential"])
-      @to     = CXML::Credential.new(data["To"]["Credential"])
-      @sender = CXML::Sender.new(data["Sender"])
+
+      from_credential = data["From"]["Credential"]    if data["From"]
+      to_credential   = data["To"]["Credential"]      if data["To"]
+
+      @from   = CXML::Credential.new(from_credential) if from_credential
+      @to     = CXML::Credential.new(to_credential)   if to_credential
+      @sender = CXML::Sender.new(data["Sender"])      if data["Sender"]
+
+      @from   ||= data[:from]
+      @to     ||= data[:to]
+      @sender ||= data[:sender]
     end
 
     def render(node)

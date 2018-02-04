@@ -34,16 +34,26 @@
 
 module CXML
   class Credential
-    attr_reader :domain, :type, :shared_secret, :identity
+    ATTRS = %i[  domain  type  shared_secret  identity  ]
+    attr_reader *ATTRS
 
     # Initialize a new Credential instance
     # @param data [Hash] optional initial data
     def initialize(data=nil)
       data ||= {}
-      @domain        = data["domain"]
-      @type          = data["type"]
-      @identity      = data["Identity"]
-      @shared_secret = data["SharedSecret"]
+      @domain        = data["domain"]       || data[:domain]
+      @type          = data["type"]         || data[:type]
+      @identity      = data["Identity"]     || data[:identity]
+      @shared_secret = data["SharedSecret"] || data[:shared_secret]
+    end
+
+    #
+    # Builds new Credential with mixed in opts
+    # @param {Hash} opts
+    #
+    def with(opts)
+      next_opts = ATTRS.reduce({}) { |memo, opt| memo[opt] = self.send(:"#{opt}"); memo }
+      Credential.new next_opts.merge(opts)
     end
 
     def render(node)
