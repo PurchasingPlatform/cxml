@@ -19,6 +19,7 @@ module CXML
   autoload :Item,                      "cxml/item"
   autoload :Parser,                    "cxml/parser"
   autoload :User,                      "cxml/user"
+  autoload :PunchoutSetupRequestError, "cxml/punchout_setup_request_error"
   autoload :PunchoutSetupRequestNode,  "cxml/punchout_setup_request_node"
   autoload :PunchoutSetupRequest,      "cxml/punchout_setup_request"
 

@@ -19,16 +19,17 @@ module CXML
 
     def render node
       node.Request do |n|
-        n.PunchOutSetupRequest("operation" => operation)
-        n.BuyerCookie buyer_cookie
-        user.render(n)
+        n.PunchOutSetupRequest("operation" => operation) do |n|
+          n.BuyerCookie buyer_cookie
+          user.render(n)
 
-        n.BrowserFormPost do |n|
-          n.URL browser_form_post_url
-        end
+          n.BrowserFormPost do |n|
+            n.URL browser_form_post_url
+          end
 
-        n.SupplierSetup do |n|
-          n.URL supplier_setup_url
+          n.SupplierSetup do |n|
+            n.URL supplier_setup_url
+          end
         end
       end
     end

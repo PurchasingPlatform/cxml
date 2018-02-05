@@ -59,7 +59,7 @@ module CXML
     def render(node)
       node.Credential("domain" => domain) do |c|
         c.Identity(identity)
-        c.SharedSecret(shared_secret) if shared_secret
+        c.SharedSecret(shared_secret) if shared_secret && !shared_secret.empty?
       end
       node
     end
