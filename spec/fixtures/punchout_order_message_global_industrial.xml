@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cXML SYSTEM "http://xml.cxml.org/schemas/cXML/1.2.021/cXML.dtd">
+<cXML payloadID="1518017562507.9022485@www.globalindustrial.com" timestamp="2018-02-07T10:32:42-0500">
+	<Header>
+		<From>
+			<Credential domain="NetworkID_from">
+				<Identity>001472216_from</Identity>
+			</Credential>
+		</From>
+		<To>
+			<Credential domain="NetworkID_to">
+				<Identity>5168_to</Identity>
+			</Credential>
+		</To>
+		<Sender>
+			<Credential domain="NetworkID_to">
+				<Identity>5168_to</Identity>
+				<SharedSecret>theSharedSecret</SharedSecret>
+			</Credential>
+			<UserAgent>SupplierTesting2</UserAgent>
+		</Sender>
+	</Header>
+	<Message>
+		<PunchOutOrderMessage>
+			<BuyerCookie>1407b4b6011cdee21b689d4cbe55c878</BuyerCookie>
+			<PunchOutOrderMessageHeader operationAllowed="edit">
+				<Total>
+					<Money currency="USD">1919.05</Money>
+				</Total>             
+			</PunchOutOrderMessageHeader>			
+			
+			  	
+						<ItemIn quantity="1">
+						<ItemID>							
+							<SupplierPartID>T9TB402299</SupplierPartID>
+								<SupplierPartAuxiliaryID>1407b4b6011cdee21b689d4cbe55c878</SupplierPartAuxiliaryID>
+						</ItemID>
+						       
+						<ItemDetail>
+								<UnitPrice>
+										<Money currency="USD">90.86</Money>
+									
+								</UnitPrice>
+								<Description xml:lang="en">#8 x 1-1/4 Bugle Square Drive Course Thread Type 17 Point Deck Screw 18-8 Stainless Steel,1500 pcs</Description>
+								<UnitOfMeasure>EA</UnitOfMeasure>
+									<Classification domain="UNSPSC">31161500</Classification>
+								
+						</ItemDetail>
+					</ItemIn>
+			  	
+						<ItemIn quantity="10">
+						<ItemID>							
+							<SupplierPartID>T9TB402463</SupplierPartID>
+								<SupplierPartAuxiliaryID>1407b4b6011cdee21b689d4cbe55c878</SupplierPartAuxiliaryID>
+						</ItemID>
+						       
+						<ItemDetail>
+								<UnitPrice>
+										<Money currency="USD">153.85</Money>
+									
+								</UnitPrice>
+								<Description xml:lang="en">#6 x 1-1/4 Coarse Thread Type 17 Point Deck Screw 18-8 Stainless 3000 Pack</Description>
+								<UnitOfMeasure>EA</UnitOfMeasure>
+									<Classification domain="UNSPSC">31161500</Classification>
+								
+						</ItemDetail>
+					</ItemIn>
+			  	
+						<ItemIn quantity="1">
+						<ItemID>							
+							<SupplierPartID>T9TB1309598</SupplierPartID>
+								<SupplierPartAuxiliaryID>1407b4b6011cdee21b689d4cbe55c878</SupplierPartAuxiliaryID>
+						</ItemID>
+						       
+						<ItemDetail>
+								<UnitPrice>
+										<Money currency="USD">289.69</Money>
+									
+								</UnitPrice>
+								<Description xml:lang="en">Gas &amp; Go Polyethylene 25-Gallon Fuel Cart Caddy - UN/DOT and Transport Canada Approved, GG-25PFC</Description>
+								<UnitOfMeasure>EA</UnitOfMeasure>
+									<Classification domain="UNSPSC">24111802</Classification>
+								
+						</ItemDetail>
+					</ItemIn>
+		
+					
+		</PunchOutOrderMessage>
+	</Message>	
+</cXML>

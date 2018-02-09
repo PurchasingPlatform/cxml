@@ -11,8 +11,10 @@ module CXML
         data = CXML.parse(data)
       end
 
-      @code     = data["code"].to_i
-      @text     = data["text"]
+      code      = data["code"]      || data[:code]
+      @code     = code.to_i
+
+      @text     = data["text"]      || data[:text]
       @xml_lang = data["xml:lang"]
     end
 

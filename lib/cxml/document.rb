@@ -55,5 +55,9 @@ module CXML
       end
       node
     end
+
+    def to_xml
+      render.to_xml
+    end
   end
 end

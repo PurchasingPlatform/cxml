@@ -1,3 +1,5 @@
+require "helpers/document"
+
 describe CXML::PunchoutSetupRequest do
   let(:origin) { 'origin.foo' }
 
@@ -27,6 +29,21 @@ describe CXML::PunchoutSetupRequest do
     }) 
   end
 
+  let(:ship_to) do
+    CXML::Address.new({
+      id:           'address_id',
+      to:           'John Smith',
+      street:       'Foo str',
+      city:         'Chicago',
+      state:        'IL',
+      postal_code:  '12345',
+      country: {
+        iso_code: 'US',
+        name:     'United States'
+      }
+    })
+  end
+
   let(:valid_constructor_opts) do
     {
       origin: origin,
@@ -39,7 +56,9 @@ describe CXML::PunchoutSetupRequest do
       browser_form_post_url: browser_form_post_url,
       supplier_setup_url:    supplier_setup_url,
 
-      user: user
+      user: user,
+
+      ship_to: ship_to
     }
   end
 
@@ -54,17 +73,10 @@ describe CXML::PunchoutSetupRequest do
   describe "#render" do
     before do
       allow(SecureRandom).to receive(:hex).and_return(buyer_cookie)
-      allow_any_instance_of(CXML::Document)
-        .to receive(:payload_id)
-        .and_return(payload_id)
-
-      allow_any_instance_of(CXML::Document)
-        .to receive(:timestamp)
-        .and_return(double(:timestamp, iso8601: timestamp, to_i: timestamp))
     end
 
-    it "should match xml" do
-      expect(punchout_setup_request.render.to_xml).to eq(expected_xml)
+    it "should match xml", mock_payload_id: true, mock_timestamp: true do
+      expect(punchout_setup_request.to_xml).to eq(expected_xml)
     end
   end
 end

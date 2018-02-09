@@ -13,23 +13,37 @@
       </Credential>
     </To>
     <Sender>
-      <UserAgent>purchasingplatform.com v0.3.0 CXML v1.2.011</UserAgent>
       <Credential domain="CustomDomain">
         <Identity>from</Identity>
         <SharedSecret>shared_foo</SharedSecret>
       </Credential>
+      <UserAgent>purchasingplatform.com v0.3.0 CXML v1.2.011</UserAgent>
     </Sender>
   </Header>
   <Request>
-    <PunchOutSetupRequest operation="create"/>
-    <BuyerCookie>fookie</BuyerCookie>
-    <Extrinsic name="UserEmail">user@e.mail</Extrinsic>
-    <Extrinsic name="UniqueName">foouser</Extrinsic>
-    <BrowserFormPost>
-      <URL>https://buyer.host/endpoint</URL>
-    </BrowserFormPost>
-    <SupplierSetup>
-      <URL>https://vendor.host/endpoint</URL>
-    </SupplierSetup>
+    <PunchOutSetupRequest operation="create">
+      <BuyerCookie>fookie</BuyerCookie>
+      <Extrinsic name="UserEmail">user@e.mail</Extrinsic>
+      <Extrinsic name="UniqueName">foouser</Extrinsic>
+      <BrowserFormPost>
+        <URL>https://buyer.host/endpoint</URL>
+      </BrowserFormPost>
+      <SupplierSetup>
+        <URL>https://vendor.host/endpoint</URL>
+      </SupplierSetup>
+      <ShipTo>
+        <Address addressID="address_id">
+          <Name xml:lang="en">address_id</Name>
+          <PostalAddress>
+            <DeliverTo>John Smith</DeliverTo>
+            <Street>Foo str</Street>
+            <City>Chicago</City>
+            <State>IL</State>
+            <PostalCode>12345</PostalCode>
+            <Country isoCountryCode="US">United States</Country>
+          </PostalAddress>
+        </Address>
+      </ShipTo>
+    </PunchOutSetupRequest>
   </Request>
 </cXML>

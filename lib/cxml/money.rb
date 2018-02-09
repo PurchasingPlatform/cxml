@@ -20,11 +20,28 @@ module CXML
     attr_accessor :alternative_currency
     attr_accessor :alternative_amount
 
+    def initialize opts = nil
+      opts ||= {}
+      @raw = opts[:raw]
+    end 
+
+    def amount
+      @amount ||= raw["content"].to_f
+    end
+
+    def currency
+      @currency ||= raw["currency"]
+    end
+
     def render(node)
       node.Money(amount, build_attributes)
     end
 
     private
+
+    def raw
+      @raw
+    end
 
     def build_attributes
       attributes = {}

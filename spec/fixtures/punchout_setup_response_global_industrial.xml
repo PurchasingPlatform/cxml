@@ -1,0 +1,11 @@
+<!DOCTYPE cXML SYSTEM "http://xml.cxml.org/schemas/cXML/1.2.011/cXML.dtd">
+<cXML payloadID="1517944841478.9165142@www.globalindustrial.com" timestamp="2018-02-06T14:20:41-0500">
+	<Response>
+	    <Status code="200" text="success"></Status>
+		<PunchOutSetupResponse>
+			<StartPage>
+				<URL><![CDATA[https://url.to/cXML/punchOutSetupStartPage]]></URL>
+			</StartPage>
+		</PunchOutSetupResponse>
+	</Response>
+</cXML>

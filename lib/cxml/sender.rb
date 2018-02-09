@@ -14,10 +14,22 @@ module CXML
       @user_agent = data[:user_agent] || DEFAULT_USER_AGENT   unless @user_agent
     end
 
+    def domain
+      credential.domain
+    end
+
+    def identity
+      credential.identity
+    end
+
+    def shared_secret
+      credential.shared_secret
+    end
+
     def render(node)
       node.Sender do |n|
-        n.UserAgent(user_agent)
         credential.render(n)
+        n.UserAgent(user_agent)
       end
       node
     end

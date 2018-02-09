@@ -7,7 +7,9 @@ module CXML
 
       :browser_form_post_url,
       :supplier_setup_url,
-      :user 
+      :user,
+
+      :ship_to 
     ]
 
     attr_reader *ATTRS
@@ -21,7 +23,7 @@ module CXML
       node.Request do |n|
         n.PunchOutSetupRequest("operation" => operation) do |n|
           n.BuyerCookie buyer_cookie
-          user.render(n)
+          user.render(n) unless user.nil?
 
           n.BrowserFormPost do |n|
             n.URL browser_form_post_url
@@ -29,6 +31,10 @@ module CXML
 
           n.SupplierSetup do |n|
             n.URL supplier_setup_url
+          end
+
+          unless ship_to.nil?
+            n.ShipTo { |n| ship_to.render(n) }
           end
         end
       end
@@ -40,10 +46,18 @@ module CXML
       raise ArgumentError, "operation='#{ opts[:operation] }' is not a Symbol" unless opts[:operation].is_a? Symbol
 
       [ :buyer_cookie, :browser_form_post_url, :supplier_setup_url ].each do |opt|
-        raise ArgumentError, "#{opt}='#{ opts[opt] }' is not a String"       unless opts[opt].is_a? String
+        raise ArgumentError, "#{opt}='#{ opts[opt] }' is not a String" unless opts[opt].is_a? String
       end
 
-      raise ArgumentError, "user='#{ opts[:user] }' is not a CXML::User"   unless opts[:user].is_a? User
+      [ 
+        [ :user,    User ], 
+        [ :ship_to, Address ] 
+      ].each do |pair|
+        opt, klass = pair
+        if !opts[opt].nil? && !opts[opt].is_a?(klass)
+          raise ArgumentError, "#{ opt }='#{ opts[opt] }' is not a CXML::#{ klass.name }"
+        end
+      end
     end
 
     def assign_opts opts
