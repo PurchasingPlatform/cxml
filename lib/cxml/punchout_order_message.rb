@@ -30,7 +30,12 @@ module CXML
     end
 
     def items
-      @items ||= message["ItemIn"].map { |item| PunchoutOrderMessageItem.new(raw: item) }
+      if @items.nil?
+        items  = message["ItemIn"]
+        items  = [ items ] unless items.is_a? Array
+        @items = items.map { |item| PunchoutOrderMessageItem.new(raw: item) }
+      end
+      @items
     end
 
     private

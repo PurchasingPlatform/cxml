@@ -1,6 +1,6 @@
 describe CXML::PunchoutOrderMessage do
   describe "#parse" do
-    let(:xml) { fixture("punchout_order_message_global_industrial.xml") }
+    let(:cxml) { fixture("punchout_order_message_global_industrial.xml") }
 
     let(:from_domain)     { "NetworkID_from" }
     let(:from_identity)   { "001472216_from" }
@@ -22,8 +22,8 @@ describe CXML::PunchoutOrderMessage do
     let(:classifictaion_unspsc)       { "31161500" }
 
 
-    it "should parse Global Industrial xml" do
-      message = described_class.parse(xml)
+    it "should parse Global Industrial cxml" do
+      message = described_class.parse(cxml)
       header  = message.header
 
       expect(header.from.domain).to           eq(from_domain)
@@ -50,6 +50,36 @@ describe CXML::PunchoutOrderMessage do
       expect(first.description).to                  eq(item_description)
       expect(first.classifictaion_unspsc).to        eq(classifictaion_unspsc)                      
     end
+
+    describe "sinble product in Global Industrial cxml" do
+      let(:cxml) { fixture("punchout_order_message_global_industrial_single_item.xml") }
+
+      let(:supplier_part_id)            { "T9T300705" }
+      let(:supplier_part_auxiliary_id)  { "4bf8c2a1cc3e8d32a036eb0215ca880c" }
+      let(:unit_price)                  { 455.95 }
+      let(:unit_price_currency)         { "USD" }
+      let(:quantity)                    { 3 }
+      let(:unit_of_measure)             { "EA" }
+      let(:item_description)            { "John Dow 30 Gallon UL Listed Portable Steel Gas Storage Caddy, HGC-30UL" }
+      let(:classifictaion_unspsc)       { "24111802" }
+
+      it "should parse" do
+        message = described_class.parse(cxml)
+        expect(message.items.length).to eq(1)
+
+        first = message.items.first
+        expect(first.supplier_part_id).to             eq(supplier_part_id)
+        expect(first.supplier_part_auxiliary_id).to   eq(supplier_part_auxiliary_id)
+        expect(first.unit_price.amount).to            eq(unit_price)
+        expect(first.unit_price.currency).to          eq(unit_price_currency)
+        expect(first.quantity).to                     eq(quantity)
+        expect(first.unit_of_measure).to              eq(unit_of_measure)
+        expect(first.description).to                  eq(item_description)
+        expect(first.classifictaion_unspsc).to        eq(classifictaion_unspsc)                      
+
+      end
+    end
+
 
     context "no products"
     context "no classification"
