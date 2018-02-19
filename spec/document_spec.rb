@@ -1,4 +1,4 @@
-describe CXML::Document, only: true do
+describe CXML::Document do
   let(:parser) { CXML::Parser.new }
 
   it { is_expected.to respond_to :version }
