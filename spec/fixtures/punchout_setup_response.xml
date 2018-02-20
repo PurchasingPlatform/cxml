@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cXML SYSTEM "http://xml.cxml.org/schemas/cXML/1.2.011/cXML.dtd">
+<cXML xml:lang="en-US" version="1.2.011" payloadID="sample_payload_id" timestamp="timestamp_mock">
+  <Response>
+    <Status code="200" text="success"/>
+    <PunchOutSetupResponse>
+      <StartPage>
+        <URL>https://url.to/cXML/punchOutSetupStartPage</URL>
+      </StartPage>
+    </PunchOutSetupResponse>
+  </Response>
+</cXML>

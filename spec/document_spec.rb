@@ -37,6 +37,7 @@ describe CXML::Document do
         doc.setup
         doc.response = CXML::Response.new
         doc.response.punchout_setup_url = 'http://example.com'
+        doc.response.status.code = 200
         doc
       end
 

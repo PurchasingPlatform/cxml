@@ -6,11 +6,21 @@
 
 module CXML
   class Response
-    attr_accessor :id, :status, :punchout_setup_url
+    attr_accessor :id, :status, :payload, :punchout_setup_url
 
     def initialize(data=nil)
       data ||= {}
-      @status = CXML::Status.new(data["Status"])
+
+      status_opts = data["Status"]
+      unless status_opts
+        status_opts = {
+          code: data[:status_code],
+          text: data[:status_text]
+        }
+      end
+
+      @status = Status.new(status_opts)
+      @payload = data[:payload]
     end
 
     def render(node)
@@ -19,6 +29,7 @@ module CXML
 
       node.Response(options) do |n|
         status.render(n)
+        payload.render(n) if payload
 
         if punchout_setup_url
           n.PunchOutSetupResponse do |p|
