@@ -12,11 +12,11 @@ module CXML
         end
 
         node.ItemDetail do
+          node.UnitPrice { unit_price.render(node) }
           node.Description(description, 'xml:lang' => lang) do
             node.ShortName(name)
           end
           node.UnitOfMeasure(unit_of_measure)
-          node.UnitPrice { unit_price.render(node) }
           node.Classification(unspsc, domain: 'UNSPSC') unless unspsc.nil?
         end
       end
