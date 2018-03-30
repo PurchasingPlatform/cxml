@@ -17,7 +17,7 @@
         <Identity>from</Identity>
         <SharedSecret>shared_foo</SharedSecret>
       </Credential>
-      <UserAgent>purchasingplatform.com v0.3.0 CXML v1.2.011</UserAgent>
+      <UserAgent>purchasingplatform.com v0.4.0 CXML v1.2.011</UserAgent>
     </Sender>
   </Header>
   <Request>
